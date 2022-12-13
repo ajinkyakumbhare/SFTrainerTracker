@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Course Offering" icon-name="standard:account">
+            <div class="slds-p-around_x-small">
+                <lightning-input label="Name" value={rec.Name} onchange={handleNameChange}></lightning-input>
+                <lightning-input label="Industry" value={rec.Industry} onchange={handleIndChange}></lightning-input>
+
+                <lightning-record-edit-form object-api-name="Course_Offering__c" id="createContactForm" >
+                    <lightning-input-field field-name="Course__c" variant="label-hidden" onchange={handleCourseOfferingSelection} required> </lightning-input-field>
+                </lightning-record-edit-form>
+                
+                <lightning-card title="Date Time Field">
+                    <lightning-input type="datetime" onchange={handleDateTimeChange}  label="Enter a date/time value"></lightning-input>
+                    <p slot="footer">Date Time Field value is:- {dateTimeFieldValue}</p>
+                </lightning-card>
+
+                <lightning-input type="Phone" label="Phone" value={rec.Phone} onchange={handlePhnChange}></lightning-input><br/>
+                <lightning-button label="Save" onclick={handleClick}></lightning-button>
+            </div>
+        </lightning-card>
+</template>

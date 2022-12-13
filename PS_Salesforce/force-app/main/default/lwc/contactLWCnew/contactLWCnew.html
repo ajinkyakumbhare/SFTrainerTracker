@@ -1,0 +1,8 @@
+<template>
+    <lightning-input type="search" onchange={handleKeyChange} class="slds-m-bottom_small" label="Trainer" value={contactName}>
+
+    </lightning-input>
+    <template for:each={contactList} for:item="contactObj" for:index="index">
+        <option key={contactObj.Id}>{contactObj.Name}</option>
+    </template>
+</template>

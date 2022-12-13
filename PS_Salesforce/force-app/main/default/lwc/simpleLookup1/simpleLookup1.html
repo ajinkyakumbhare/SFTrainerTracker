@@ -1,0 +1,11 @@
+<template>
+    <lightning-record-edit-form object-api-name="Contact">
+        <div class="slds-text-align_center slds-m-around_x-small">
+                                                           <label for="fieldid">School</label>
+                                                           <lightning-input-field id="schoolId" required={required}
+                                                               variant="label-hidden" field-name="School__c"
+                                                               value={schoolValue} onchange={handleChange}>
+                                                           </lightning-input-field>
+                                                       </div>
+        </lightning-record-edit-form>
+</template>

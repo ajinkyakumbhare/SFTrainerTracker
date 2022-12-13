@@ -1,0 +1,16 @@
+<template>
+    <div class="slds-box slds-p-top_small" style="background-color: white;">
+        <h1> Trainers </h1><br/>
+        <lightning-record-edit-form object-api-name="Contact" id="createContactForm" >
+            <lightning-input-field field-name="Name" variant="label-hidden" onchange={handleCourseOfferingSelection} required> </lightning-input-field>
+        </lightning-record-edit-form>
+            
+    </div>
+
+    <lightning-input type="search" onchange={handleKeyChange} class="slds-m-bottom_small" label="Search" value={accountName}>
+
+    </lightning-input>
+    <template for:each={accountList} for:item="accountObj" for:index="index">
+        <option key={accountObj.Id}>{accountObj.Name}</option>
+    </template>
+</template>

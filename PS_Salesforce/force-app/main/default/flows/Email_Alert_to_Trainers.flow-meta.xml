@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Send an email alert to trainer about new training assignment.</description>
+        <name>Email_Alert_for_Trainer</name>
+        <label>Email Alert for Trainer</label>
+        <locationX>197</locationX>
+        <locationY>264</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EmailBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.Trainer__r.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>New course is assigned to you </stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>55.0</apiVersion>
+    <description>Send a Email to trainer when new trainings are assigned to them.</description>
+    <environments>Default</environments>
+    <interviewLabel>Email Alert to Trainers {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Email Alert to Trainers</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>401</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Email_Alert_for_Trainer</targetReference>
+        </connector>
+        <object>Trainer_Offering__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>EmailBody</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Hi {!$Record.Trainer__r.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You have been assign a new training.These are the details .&lt;/p&gt;&lt;p&gt;Course Name       --&amp;gt;&lt;span style=&quot;color: rgb(186, 42, 42);&quot;&gt;{!$Record.Course_Offering__r.Course__r.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Course Skill          --&amp;gt;{!$Record.Course_Offering__r.Course__r.Skill__r.Name}&lt;/p&gt;&lt;p&gt;Course start Date --&amp;gt;&lt;span style=&quot;color: rgb(140, 35, 35);&quot;&gt;{!$Record.Course_Offering__r.Start_Date_Time__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Course End Date  --&amp;gt;&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(157, 36, 36);&quot;&gt;{!$Record.Course_Offering__r.End_Date_Time__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Thanks and Regards,&lt;/p&gt;&lt;p&gt;Persistent System :)&lt;/p&gt;</text>
+    </textTemplates>
+</Flow>
